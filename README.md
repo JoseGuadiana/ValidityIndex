@@ -33,6 +33,14 @@ classifiers_parameters={
 ```
 And the parameters for each of them can be found in the sklearn documentation.
 
+### Threading tunning
+By default, the proccess of calculating VIC is done using 4 threads. This can be modify by changing the value of the "n_jobs" variable in line 18 of the "example.py" file:
+
+```python
+n_jobs=4 #Multithread parameter
+```
+Set the parameter to -1 to use all proccesors. Further information can be found in the documentation for the ``cross_val_score()`` function: https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html
+
 ### Cross-validation
 K fold cross-validation is used, defining the parameter **kgroups**, to determine the best performing algorithm on a partition evaluation and its implementation can be threaded using the paramater **n_jobs** in VIC. Finally we can choose from different metrics to perform the validation through the **metric** parameter, such detailed options can be found [here](https://scikit-learn.org/stable/modules/classes.html#sklearn-metrics-metrics).
 Calling the function generates a tuple with three outputs, the maximum value of the k-fold mean metric for the evaluated classifiers, an array with ``['mean_kfold_metric', 'sd_metric', 'classifier_name' ]`` of the best classifier for the partition and a matrix with all the values for all the classifiers in case it is required.
